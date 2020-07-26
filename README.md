@@ -1,5 +1,6 @@
 # Zoom Clone
 
+Socket io gives us control of the rooms
 
 server: npm init -y
 server communication: npm i express ejs socket.io
