@@ -28,6 +28,8 @@ io.on('connection', socket => {
     // set up events to listen to: when someone connects to a room, pass in roomId and userId
     socket.on('join-room', (roomId, userId) => {
         console.log(roomId, userId)
+        socket.join(roomId) // joining this new room with current user, anytime something happens on the room, we send it to user
+        socket.to(roomId).broadcast.emit('user-connected', userId) // everytime someone joins send everyone (but me) a message that I connected
     })
 })
 
