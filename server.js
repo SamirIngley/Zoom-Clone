@@ -30,6 +30,9 @@ io.on('connection', socket => {
         console.log(roomId, userId)
         socket.join(roomId) // joining this new room with current user, anytime something happens on the room, we send it to user
         socket.to(roomId).broadcast.emit('user-connected', userId) // everytime someone joins send everyone (but me) a message that I connected
+        socket.on('disconnect', () => {
+            socket.to(roomId).broadcast.emit('user-disconnected', userId)
+        })
     })
 })
 
